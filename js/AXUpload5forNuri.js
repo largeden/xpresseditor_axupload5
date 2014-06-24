@@ -431,7 +431,7 @@ var fnObj = {
 				sessionName : "PHPSESSID"
 			}, cfg);
 
-			uploadSettingObj[seq] = cfg; // editor 설정정보 저장
+			uploaderSettings[seq] = uploadSettingObj[seq] = cfg; // editor 설정정보 저장
 
 			// 파일 박스안의 우클릭, 드래그 방지
 			jQuery("#uploadQueueBox").bind("contextmenu", function(event){event.preventDefault();});
@@ -691,6 +691,13 @@ function _filesize(size)
 	}
 
 	return sprintf("%0.2fMB", size / (1024 * 1024));
+}
+
+window.reloadFileList = _reloadFileList;
+
+function _reloadFileList(cfg)
+{
+	fnObj.upload.getFileList(cfg);
 }
 
 })();
