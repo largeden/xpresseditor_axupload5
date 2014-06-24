@@ -697,8 +697,8 @@ window.reloadFileList = _reloadFileList;
 
 function _reloadFileList(cfg)
 {
-	myUpload.custom.reloadFileList(uploadSettingObj[cfg.editorSequence]);
 	fnObj.upload.getFileList(cfg);
+	myUpload.custom.reloadFileList(uploadSettingObj[cfg.editorSequence]);
 }
 
 })();
