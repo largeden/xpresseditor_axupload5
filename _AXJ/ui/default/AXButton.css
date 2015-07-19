@@ -9,6 +9,9 @@
  * Adaptor NURI Project (developer@nuricms.org)
  */
 
+.AXButton{
+	margin-bottom:5px;
+}
 
 /** .AXButton.Classic **/
 .AXButton.Classic{
@@ -85,8 +88,6 @@
 	box-shadow:none;
 	color:#ffc1af;text-shadow:0px 1px #7a4247;
 }
-
-
 
 /* disabled cotrol */
 .AXButton[disabled]{

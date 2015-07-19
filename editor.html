@@ -459,6 +459,7 @@
 				<input type="button" value="{$lang->edit->delete_selected}" class="AXButton" onclick="myUpload.deleteSelect();" />
 				<input type="button" value="{$lang->AXdelete_all}" class="AXButton" onclick="myUpload.deleteSelect('all');" />
 				<input type="button" value="{$lang->edit->link_file}" class="AXButton Classic" onclick="myUpload.custom.insertUploadedFile('{$editor_sequence}');" />
+				<input type="button" value="{$lang->AXcover}" class="AXButton Green" onclick="myUpload.setCover('{$editor_sequence}');" />
 				<div class="AXlogo"><a href="http://www.axisj.com/" title="Awesome UI library AXISJ" target="_blank"></a></div>
 				<div class="file_attach_info" id="uploader_status_{$editor_sequence}"></div>
 			</div>
@@ -519,7 +520,10 @@
 							"cancelMsg" : "{$lang->AXcancelMsg}",
 							"allowed_filetypes" : "{$lang->AXallowed_filetypes}",
 							"uploadFileSize" : "{$lang->AXuploadFileSize}",
-							"res_error" : "{$lang->AXres_error}"
+							"res_error" : "{$lang->AXres_error}",
+							"error_coverNone" : "{$lang->AXerror_coverNone}",
+							"error_coverSelect" : "{$lang->AXerror_coverSelect}",
+							"error_coverImage" : "{$lang->AXerror_coverImage}"
 						}
 				});
 			}, 1);

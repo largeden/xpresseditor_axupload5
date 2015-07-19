@@ -288,6 +288,11 @@ var AXUpload5 = Class.create(AXUpload5, {
 							onClickFileTitle(itemID);
 						});
 					}
+					
+					if(f.cover_image)
+					{
+						jQuery("#"+f.id+"_AXUploadLabel_mainImageFile").show('fast');
+					}
 					// --------------------- e
 
 					jQuery("#"+itemID).addClass("readyselect");
@@ -410,6 +415,67 @@ var AXUpload5 = Class.create(AXUpload5, {
 				toast.push({body:uploadSettingObj[editorSequence].lang.msg_file_cart_is_null, type:'Warning'}); // NuriCms: 삭제 대상이 없으면 메시지를 출력
 			}
 		}
+	},
+	setCover: function(editorSequence) { // 커버 선택
+		var settings = uploadSettingObj[editorSequence],
+			fileListAreaID = settings.fileListAreaID,
+			targetFiles,
+			targetfileID = [],
+			uploadFile = [],
+			file_srl,
+			text = new Array();
+
+		if(editorMode[editorSequence]=='preview') return;
+
+		// 본문 삽입의 대상을 첨부파일 리스트로부터 구함
+		targetFiles = myUpload.multiSelector.getSelects();
+		
+		// 커버 이미지는 하나만 선택해야함
+		if(targetFiles.length == 0) 
+		{
+			toast.push({body:uploadSettingObj[editorSequence].lang.error_coverNone, type:'Warning'}); 
+			return;
+		}
+		else if(targetFiles.length > 1)
+		{
+			toast.push({body:uploadSettingObj[editorSequence].lang.error_coverSelect, type:'Warning'});
+			return;
+		}
+		else if(!jQuery("#"+targetFiles[0].id+" div").hasClass("AXUploadPreview"))
+		{
+			toast.push({body:uploadSettingObj[editorSequence].lang.error_coverImage, type:'Warning'});
+			return;
+		}
+
+		// file_srl, file.id 구하기
+		targetfileID[targetFiles[0].id] = targetFiles[0].id;
+
+		jQuery.each(myUpload.uploadedList, function(i, file){
+			if(!targetfileID[file.id]) return true;
+			file_srl = file.file_srl;
+		});
+
+		// 커버 등록
+		var params = {
+				vid : (function() { if(typeof xeVid !== "undefined") return xeVid; else return ''; })(),
+				mid : current_mid,
+				module : 'file',
+				act : 'getFileList',
+				file_srl : file_srl,
+				editor_sequence   : uploadSettingObj[editorSequence].editorSequence
+			};
+
+		exec_xml(
+			'file',
+			'procFileSetCoverImage',
+			params,
+			function(res) {
+				if(res.error != 0) return;
+
+				jQuery(".AXUploadLabel .AXUploadMainImage").hide('fast');
+				jQuery("#"+targetFiles[0].id+"_AXUploadLabel_mainImageFile").show('fast');
+			}
+		);
 	}
 });
 
@@ -489,6 +555,11 @@ var fnObj = {
 					download_url:"download_url",
 					uploaded_filename:"uploaded_filename"
 				},
+				formatter: function(f){
+					var po = [];
+					po.push("<div id='"+this.id+"_AXUploadLabel_mainImageFile' class='AXUploadMainImage' title='Cover'>Cover</div>");
+					return po.join('');
+				},
 				onUpload: function(uploadedItem){ // 업로드 완료시 현재 등록파일의 총용량을 계산해서 화면에 반영
 					cfg.insertedFiles = uploadedItem.uploaded_count;
 					jQuery('#'+cfg.uploaderStatusID+' .attach_size').html(filesize(cfg.uploadMaxFileSize - cfg.uploadLeftFileSize));
@@ -563,7 +634,14 @@ var fnObj = {
 				// 첨부파일 허용 사이즈 재계산
 				cfg.uploadLeftFileSize = response_tags.left_size;
 				jQuery('#'+cfg.uploaderStatusID).html(response_tags.upload_status);
-				if(upload_status == true) return false; // 삭제처리로 인한 요청이라면 여기서 수행종료
+
+				if(upload_status == true){ // 삭제처리로 인한 요청이라면 여기서 수행종료
+					if(response_tags.files == undefined){
+						jQuery("#"+myUpload.config.dropBoxID).addClass("allowDrop", "fast");
+					}
+					
+					return false;
+				}
 
 				// 파일박스안에 내용을 초기화
 				myUpload.uploadedList = [];
@@ -574,6 +652,8 @@ var fnObj = {
 				}else if(!response_tags.files.item.length){
 					response_tags.files.item[0] = response_tags.files.item;
 				}
+
+				jQuery("#"+myUpload.config.dropBoxID).removeClass("allowDrop", "fast");
 
 				// NuriCms: AXUpload5 element ID insert
 				var res = [];

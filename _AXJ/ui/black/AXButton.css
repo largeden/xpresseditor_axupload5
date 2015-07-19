@@ -9,6 +9,9 @@
  * Adaptor NURI Project (developer@nuricms.org)
  */
 
+.AXButton{
+	margin-bottom:5px;
+}
 
 /** .AXButton.Classic **/
 .AXButton.Classic{

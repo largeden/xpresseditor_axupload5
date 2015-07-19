@@ -60,4 +60,24 @@
 		<value xml:lang="en"><![CDATA[File transfer failed.]]></value>
 		<value xml:lang="jp"><![CDATA[ファイル送信に失敗しました。サーバからエラーがリタンーされました。コンソールを確認してください。]]></value>
 	</item>
+	<item name="AXcover">
+		<value xml:lang="ko"><![CDATA[커버 선택]]></value>
+		<value xml:lang="en"><![CDATA[Choose Cover]]></value>
+		<value xml:lang="jp"><![CDATA[カバー選択]]></value>
+	</item>
+	<item name="AXerror_coverNone">
+		<value xml:lang="ko"><![CDATA[커버가 선택되지 않았습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Please select the cover image.]]></value>
+		<value xml:lang="jp"><![CDATA[カバー写真を選択してください。]]></value>
+	</item>
+	<item name="AXerror_coverSelect">
+		<value xml:lang="ko"><![CDATA[하나의 이미지만 커버로 선택 하실 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Please select the only one cover image.]]></value>
+		<value xml:lang="jp"><![CDATA[カバー写真は１つのみ選択してください。]]></value>
+	</item>
+	<item name="AXerror_coverImage">
+		<value xml:lang="ko"><![CDATA[이미지 파일이 아닙니다.]]></value>
+		<value xml:lang="en"><![CDATA[Is not image file.]]></value>
+		<value xml:lang="jp"><![CDATA[イメージファイルではありません。]]></value>
+	</item>
 </lang>

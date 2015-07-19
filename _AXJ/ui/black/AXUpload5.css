@@ -87,10 +87,10 @@ x.AXUpload5{
 .AXUpload5QueueBox .AXUploadItem .AXUploadBtns{position:absolute;left:3px;top:82px;line-height:1em;}
 .AXUpload5QueueBox .AXUploadItem .AXUploadBtns .AXUploadBtnsA{display:block;width:24px;height:24px;background:url(img/AXUpload5/removeIcon_black.png) no-repeat center center;text-indent:-1000px;overflow:hidden;}
 
-.AXUpload5QueueBox .AXUploadItem .AXUploadLabel{position:absolute;left:10px;top:84px;line-height:1em;}
+.AXUpload5QueueBox .AXUploadItem .AXUploadLabel{position:absolute;left:8px;top:84px;line-height:1em; width:32px;}
 
 .AXUpload5QueueBox .AXUploadItem .AXUploadLabel .AXUploadMainImage{
-	display:none;width:16px;height:16px;background:url(img/AXUpload5/mainImageIcon.png) no-repeat;text-indent:-1000px;overflow:hidden;float:left;
+	display:none;width:16px;height:16px;background:url(img/AXUpload5/mainImageIcon.png) no-repeat;text-indent:-1000px;overflow:hidden;float:right;
 }
 
 .AXUpload5QueueBox .AXUploadItem .AXUploadLabel .AXUploadDownload{
