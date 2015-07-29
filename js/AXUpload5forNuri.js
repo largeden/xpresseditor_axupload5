@@ -9,6 +9,7 @@ var loaded_images    = [];
 var swfUploadObjs    = [];
 var uploadSettingObj = [];
 var uploadAutosaveChecker = false;
+var uploadAutosaveLoad = false;
 
 // NuriCms: AXUpload5의 추가 객체생성
 var AXUpload5 = Class.create(AXUpload5, {
@@ -483,11 +484,11 @@ var AXUpload5 = Class.create(AXUpload5, {
 var myUpload = new AXUpload5();
 
 var fnObj = {
-	pageStart: function(cfg){
-		fnObj.upload.init(cfg);
+	pageStart: function(cfg, exe){
+		fnObj.upload.init(cfg, exe);
 	},
 	upload: {
-		init: function(cfg){
+		init: function(cfg, exe){
 			var seq = cfg.editorSequence;
 
 			if(!is_def(seq)) return;
@@ -498,6 +499,9 @@ var fnObj = {
 			}, cfg);
 
 			uploaderSettings[seq] = uploadSettingObj[seq] = cfg; // editor 설정정보 저장
+
+			// 자동 저장 활성화시 드래그앤 드롭 이중 처리 안하게 조치
+			if(exe == undefined && uploadAutosaveLoad == true) return;
 
 			// 파일 박스안의 우클릭, 드래그 방지
 			jQuery("#uploadQueueBox").bind("contextmenu", function(event){event.preventDefault();});

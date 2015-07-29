@@ -5380,12 +5380,14 @@ xe.XE_AutoSave = $.Class({
 		var document_srl = $.trim(elDocument_srl.val());
 
 		if (title || content || document_srl) {
+			uploadAutosaveLoad = true;
 			if (confirm(this.form._saved_doc_message.value)) {
 				$(this.form.title).val(title);
 				this.oApp.setIR(content);
 				if(typeof(editorGetAutoSavedDoc) == 'function') editorGetAutoSavedDoc(this.form);
 			} else {
 				editorRemoveSavedDoc();
+				editorUploadInit(editor_params, true);
 			}
 		}
 

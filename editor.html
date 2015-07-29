@@ -488,45 +488,46 @@
 		<load target="_AXJ/lib/AXJ.js" />
 		<load target="_AXJ/lib/AXUpload5.js" />
 		<load target="js/AXUpload5forNuri.js" />
+		var editor_params = {
+					"editorSequence" : {$editor_sequence},
+					"sessionName" : "{session_name()}",
+					"allowedFileSize" : "{$file_config->allowed_filesize}",
+					"allowedFileTypes" : "{$file_config->allowed_filetypes}",
+					"allowedFileTypesDescription" : "{$file_config->allowed_filetypes}",
+					"insertedFiles" : {(int)$files_count},
+					"replaceButtonID" : "swfUploadButton{$editor_sequence}",
+					"fileListAreaID" : "uploaded_file_list_{$editor_sequence}",
+					"previewAreaID" : "preview_uploaded_{$editor_sequence}",
+					"uploaderStatusID" : "uploader_status_{$editor_sequence}",
+					"uploadMaxTotalFileSize" : {$file_config->allowed_attach_size},
+					"uploadLeftFileSize" : {($file_config->allowed_attach_size-$attached_size)},
+					"uploadMaxFileSize" : {$file_config->allowed_filesize},
+					"allowed_filetypes" : "{$file_config->allowed_filetypes}",
+					"lang" : {
+						"uploadButtonTitle" : "{$lang->edit->upload_file}",
+						"uploadButtonEditor" : "{$lang->edit->link_file}",
+						"error_fileSize" : "{$lang->AXerror_fileSize}",
+						"error_html5Support" : "{$lang->AXerror_html5Support}",
+						"error_fileCount" : "{$lang->AXerror_fileCount}",
+						"msg_file_cart_is_null" : "{$lang->msg_file_cart_is_null}",
+						"confirm_delete" : "{$lang->confirm_delete}",
+						"error_deleteQueue" : "{$lang->AXerror_deleteQueue}",
+						"uploadSelectTxt" : "{$lang->AXuploadSelectTxt}",
+						"dropZoneTxt" : "{$lang->AXdropZoneTxt}",
+						"cancelMsg" : "{$lang->AXcancelMsg}",
+						"allowed_filetypes" : "{$lang->AXallowed_filetypes}",
+						"uploadFileSize" : "{$lang->AXuploadFileSize}",
+						"res_error" : "{$lang->AXres_error}",
+						"error_coverNone" : "{$lang->AXerror_coverNone}",
+						"error_coverSelect" : "{$lang->AXerror_coverSelect}",
+						"error_coverImage" : "{$lang->AXerror_coverImage}"
+					}
+			};
 
 		jQuery(document.body).ready(function(){
 			setTimeout(function(){
-				editorUploadInit({
-						"editorSequence" : {$editor_sequence},
-						"sessionName" : "{session_name()}",
-						"allowedFileSize" : "{$file_config->allowed_filesize}",
-						"allowedFileTypes" : "{$file_config->allowed_filetypes}",
-						"allowedFileTypesDescription" : "{$file_config->allowed_filetypes}",
-						"insertedFiles" : {(int)$files_count},
-						"replaceButtonID" : "swfUploadButton{$editor_sequence}",
-						"fileListAreaID" : "uploaded_file_list_{$editor_sequence}",
-						"previewAreaID" : "preview_uploaded_{$editor_sequence}",
-						"uploaderStatusID" : "uploader_status_{$editor_sequence}",
-						"uploadMaxTotalFileSize" : {$file_config->allowed_attach_size},
-						"uploadLeftFileSize" : {($file_config->allowed_attach_size-$attached_size)},
-						"uploadMaxFileSize" : {$file_config->allowed_filesize},
-						"allowed_filetypes" : "{$file_config->allowed_filetypes}",
-						"lang" : {
-							"uploadButtonTitle" : "{$lang->edit->upload_file}",
-							"uploadButtonEditor" : "{$lang->edit->link_file}",
-							"error_fileSize" : "{$lang->AXerror_fileSize}",
-							"error_html5Support" : "{$lang->AXerror_html5Support}",
-							"error_fileCount" : "{$lang->AXerror_fileCount}",
-							"msg_file_cart_is_null" : "{$lang->msg_file_cart_is_null}",
-							"confirm_delete" : "{$lang->confirm_delete}",
-							"error_deleteQueue" : "{$lang->AXerror_deleteQueue}",
-							"uploadSelectTxt" : "{$lang->AXuploadSelectTxt}",
-							"dropZoneTxt" : "{$lang->AXdropZoneTxt}",
-							"cancelMsg" : "{$lang->AXcancelMsg}",
-							"allowed_filetypes" : "{$lang->AXallowed_filetypes}",
-							"uploadFileSize" : "{$lang->AXuploadFileSize}",
-							"res_error" : "{$lang->AXres_error}",
-							"error_coverNone" : "{$lang->AXerror_coverNone}",
-							"error_coverSelect" : "{$lang->AXerror_coverSelect}",
-							"error_coverImage" : "{$lang->AXerror_coverImage}"
-						}
-				});
-			}, 1);
+				editorUploadInit(editor_params);
+			}, 500);
 		});
 		<!--@end-->
 	//]]></script>
